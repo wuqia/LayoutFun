@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.example.zowu.layoutfun.ItemViewData"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_entry_container"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_entry_commentary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{data.commentary != null ? View.VISIBLE : View.GONE}"
+            android:text="@{data.commentary}"
+            android:layout_margin="12dp"
+            android:paddingBottom="12dp"
+            tools:text="Two mathematicians posted a proof of a version of one of the most famous open problems in mathematics. The result opens a"/>
+
+        <Space
+            android:id="@+id/item_entry_image_space"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,552:292"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_commentary"
+            app:layout_constraintBottom_toTopOf="@+id/item_entry_text_barrier"/>
+
+        <ImageView
+            android:id="@+id/item_entry_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:imageUrl="@{data.imageUrl}"
+            android:visibility="@{data.imageUrl != null ? View.VISIBLE : View.GONE}"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_commentary"
+            app:layout_constraintBottom_toTopOf="@+id/item_entry_text_barrier"
+            tools:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/item_entry_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:paddingTop="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@{data.text}"
+            android:visibility="@{data.text != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/item_entry_subtext"
+            tools:text="A Big Question About Prime Numbers Gets a Partial Answer"/>
+
+        <TextView
+            android:id="@+id/item_entry_subtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{data.subtext}"
+            android:visibility="@{data.subtext != null ? View.VISIBLE : View.GONE}"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingBottom="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/item_entry_social_footer"
+            tools:text="shared on linkedin.com"/>
+
+        <TextView
+            android:id="@+id/item_entry_social_footer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:drawableStart="@drawable/like"
+            android:drawablePadding="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:gravity="center_vertical"
+            android:text="@{data.socialFooter}"
+            android:visibility="@{data.socialFooter != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="100 likes"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/item_entry_text_barrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="item_entry_text,item_entry_subtext,item_entry_social_footer"/>
+
+        <View
+            android:id="@+id/featured_item_entry_border"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/item_border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
